@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 import { useRegisterMutation } from '../app/fetchers/auth/authApi';
 import { toast, Toaster } from 'sonner';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [registerData, { isLoading, error }] = useRegisterMutation();
   const [formError, setFormError] = useState('');
-
+  const navigation = useNavigate()
   const onFinish = async (values) => {
     const { name, email, password, confirmPassword } = values;
     const information = {name:name,email:email,password:password}
@@ -16,6 +16,7 @@ const Register = () => {
       const res = await registerData(information).unwrap();
       if(res.success){
         toast.success(res.message)
+        navigation('/login')
       }
       setFormError(''); 
     } catch (err) {

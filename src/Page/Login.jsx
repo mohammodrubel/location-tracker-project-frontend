@@ -21,7 +21,7 @@ const Login = () => {
       if(res.success){
         const user = jwtDecodedUtils(res?.data?.token) 
         dispatch(setUsers({user:user,token:res?.data?.token}))
-        navigate('/')
+        navigate('/profile')
         navigate(from, { replace: true });
         toast.success(res?.message)
       }else{

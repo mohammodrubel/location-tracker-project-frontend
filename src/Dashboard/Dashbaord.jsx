@@ -8,10 +8,6 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const items = [
     {
-        key: '01',
-        label: <Link to="/dashboard">Home</Link>,
-    },
-    {
         key: '02',
         label: <Link to="user-information">User Information</Link>,
     },

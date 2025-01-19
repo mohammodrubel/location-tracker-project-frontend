@@ -22,6 +22,12 @@ const authApi = baseApi.injectEndpoints({
                 url:`/location/single-user-location/${id}`,
                 method:'GET',
             })
+        }),
+        getSingleUserLocationInformation:(builder).query({
+            query:(id)=>({
+                url:`/location/single-location/${id}`,
+                method:'GET',
+            })
         })
     })
 })
@@ -29,4 +35,6 @@ const authApi = baseApi.injectEndpoints({
 export const {
     useGetAllUserLocationQuery,
     useGetSingleUserLocationQuery,
-    useSendLocationMutation} = authApi
+    useSendLocationMutation,
+    useGetSingleUserLocationInformationQuery
+} = authApi

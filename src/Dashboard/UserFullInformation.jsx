@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useGetSingleUserLocationQuery } from '../app/fetchers/location/locationApi'
-import { useParams } from 'react-router-dom'
-import { Table } from 'antd'
+import { Link, useParams } from 'react-router-dom'
+import { Button, Table } from 'antd'
 
 function UserFullInformation() {
     const params = useParams()
     const id = params.id
     const { data } = useGetSingleUserLocationQuery(id)
+    const [currentmap,setCurrentMap]=useState(null)
     const mainData = data?.data
+    console.log(currentmap)
     const columns = [
         {
             title: "Name",
@@ -69,6 +71,12 @@ function UserFullInformation() {
             key: 'createdAt',
             render: (text) => new Date(text).toLocaleTimeString(),
             responsive: ['xs', 'sm'],
+        },
+        {
+            title: 'View In Map',
+            dataIndex: 'map',
+            key: 'map',
+            render: (item,data) => <Link to={`/dashboard/view-map/${data?._id}`}><Button type='primary'>View In Map</Button></Link>
         },
     ];
     
